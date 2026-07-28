@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="matcha-web.css">
+    
+    <title>ChelseaOS - Official Repository</title>
+</head>
+<body>
+
+    <div class="top-spacer"></div>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <img src="resources/chelsea-matcha/chel.png" alt="ChelseaOS Logo" class="logo">
+            <h1>ChelseaOS</h1>
+            <p>Ecosystem Powered by Chelsea Matcha Theme</p>
+        </header>
+
+        <!-- Screenshots -->
+        <section id="screenshots">
+            <h2>Gallery & Aesthetics</h2>
+            <div class="screenshot-grid">
+                <img src="resources/chelsea-matcha/Screenshot_2026-07-02_22-56-24.png" alt="ChelseaOS Screenshot" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+            </div>
+        </section>
+
+        <!-- Chelsea Matcha Theme Specification (Unified Aesthetic) -->
+        <section id="theme-spec">
+            <h2>Chelsea Matcha Theme Specification</h2>
+            <div class="specs-container">
+                <p style="margin-bottom: 15px; color: var(--text-muted);">
+                    Komponen estetika universal yang melandasi semua varian ChelseaOS (Desktop, Mobile, & Cloud).
+                </p>
+                <div class="specs-group">
+                    <h3>Theme Assets</h3>
+                    <ul>
+                        <li>GTK Theme: <a href="resources/chelsea-matcha/chelsea-matcha-dark.zip" download><code>chelsea-matcha-dark.zip</code></a></li>
+                        <li>Icon Theme: <a href="resources/chelsea-matcha/Papirus-chelsea_matcha-dark" download><code>Papirus-chelsea_matcha-dark</code></a></li>
+                        <li>Extra Font: <a href="resources/chelsea-matcha/NotoColorEmoji-Regular" download><code>NotoColorEmoji-Regular</code></a></li>
+                        <li>Custom Whisker Icon: <a href="resources/chelsea-matcha/chel.png" download><code>chel.png</code></a></li>
+                        <li>Bonus Desktop Image: <a href="resources/chelsea-matcha/chel.jpeg" download><code>chel.jpeg</code></a></li>
+                        <li>Default Wallpaper: <a href="resources/chelsea-matcha/defaultWallpaper.jpg" download><code>defaultWallpaper.jpg</code></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3-Column Comparison & OS Specification Section -->
+        <section id="flavors">
+            <h2>ChelseaOS Variants</h2>
+            
+            <div class="flavors-grid">
+                
+                <!-- Column 1: ChelseaOS Desktop -->
+                <div class="flavor-card">
+                    <div class="flavor-header">
+                        <h3>ChelseaOS Desktop</h3>
+                        <span class="badge badge-stable">v1.2</span>
+                    </div>
+                    
+                    <div class="flavor-body">
+                        <div class="specs-group">
+                            <h4>Base System</h4>
+                            <p>MX Linux 25.2 (Xfce AHS x64)</p>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Modifikasi System</h4>
+                            <ul>
+                                <li>Notification Timeout: 15s</li>
+                                <li>Thunar: Double Click Action</li>
+                                <li>Thunar: List View Default</li>
+                                <li>Thunar: Show Hidden Items</li>
+                            </ul>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Pre-bundled / Optional Apps</h4>
+                            <div class="app-tags">
+                                <span class="tag">ONLYOFFICE</span>
+                                <span class="tag">VS Code</span>
+                                <span class="tag">Obsidian</span>
+                                <span class="tag">GIMP</span>
+                                <span class="tag">Krita</span>
+                                <span class="tag">OBS Studio</span>
+                                <span class="tag">Snapd</span>
+                                <span class="tag">Telegram</span>
+                                <span class="tag">Zoom</span>
+                                <span class="tag">Antigravity IDE</span>
+                                <span class="tag">MS Edge</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flavor-footer">
+                        <a href="https://sourceforge.net/projects/mx-linux/files/Final/Xfce/MX-25.2_Xfce_ahs_x64.iso/download" class="btn-download" target="_blank">
+                            Download Base OS (MX Linux)
+                        </a>
+                        <div class="code-box" style="margin-top: 10px;">
+                            wget -qO- resources/desktop/transform.sh | bash
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: ChelseaOS Mobile -->
+                <div class="flavor-card">
+                    <div class="flavor-header">
+                        <h3>ChelseaOS Mobile</h3>
+                        <span class="badge badge-stable">v1.0</span>
+                    </div>
+                    
+                    <div class="flavor-body">
+                        <div class="specs-group">
+                            <h4>Base System</h4>
+                            <p>Debian Trixie Proot-Distro (Xfce)</p>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Features & Tweaks</h4>
+                            <ul>
+                                <li>Dual-mode Display (Termux-X11 & TigerVNC)</li>
+                                <li>Thunar: Double Click & List View</li>
+                                <li>Chelsea Mobile Patcher Tool</li>
+                            </ul>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Pre-bundled / Optional Apps</h4>
+                            <div class="app-tags">
+                                <span class="tag">LibreOffice</span>
+                                <span class="tag">VS Code</span>
+                                <span class="tag">Obsidian</span>
+                                <span class="tag">GIMP</span>
+                                <span class="tag">Antigravity IDE</span>
+                                <span class="tag">Antigravity 2.0</span>
+                                <span class="tag">Chromium</span>
+                                <span class="tag">Nomacs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flavor-footer">
+                        <a href="docs/chelseaos-mobile-installation-guide.html" class="btn-download btn-secondary">
+                            Panduan Instalasi
+                        </a>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">
+                            Includes: <code>start-chelsea.sh</code> & <code>chelsea-mobile-patcher.sh</code>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Column 3: ChelseaOS Cloud -->
+                <div class="flavor-card flavor-wip">
+                    <div class="flavor-header">
+                        <h3>ChelseaOS Cloud</h3>
+                        <span class="badge badge-wip">WIP / Soon</span>
+                    </div>
+                    
+                    <div class="flavor-body">
+                        <div class="specs-group">
+                            <h4>Base System</h4>
+                            <p>Debian Trixie (Xfce)</p>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Features</h4>
+                            <ul>
+                                <li>GUI Powered Cloud OS</li>
+                                <li>Antigravity Server Compatible</li>
+                                <li>Ready to Serve</li>
+                                <li>Minimum RAM 1 GB for VPS</li>
+                            </ul>
+                        </div>
+
+                        <div class="specs-group">
+                            <h4>Pre-bundled / Optional Apps</h4>
+                            <div class="app-tags">
+                                <span class="tag">VS Code</span>
+                                <span class="tag">Obsidian</span>
+                                <span class="tag">Antigravity IDE</span>
+                                <span class="tag">Antigravity 2.0</span>
+                                <span class="tag">Chromium</span>
+                                <span class="tag">Nomacs</span>
+                                <span class="tag">Apache2</span>
+                                <span class="tag">php</span>
+                                <span class="tag">mysql-server</span>
+                                <span class="tag">tailscale</span>
+                                <span class="tag">open-ssh</span>
+                                <span class="tag">socat</span>
+                                <span class="tag">TigerVNC-Server</span>
+                                <span class="tag">git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flavor-footer">
+                        <button class="btn-download btn-disabled" disabled>
+                            Work In Progress
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>ChelseaOS Project by Chris26 & Michang<br>
+            Made with Love</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

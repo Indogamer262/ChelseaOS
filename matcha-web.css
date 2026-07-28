@@ -1,0 +1,346 @@
+/* Matcha & Dark Theme Variables */
+:root {
+    --bg-color: #1e241f;
+    --card-bg: #1a1d24;
+    --text-color: #e2e8f0;
+    --text-muted: #94a3b8;
+    --matcha-primary: #8da274;
+    --matcha-hover: #768a5f;
+    --matcha-glow: rgba(141, 162, 116, 0.2);
+    --border-color: #2d3139;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+/* 1. Space kosong di atas */
+.top-spacer {
+    height: 80px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+/* 2. Heading & Logo */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px var(--matcha-glow));
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: var(--matcha-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* 3. Jarak & Tombol Download */
+.cta-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--matcha-primary);
+    color: #121417;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px var(--matcha-glow);
+}
+
+.btn-download:hover {
+    background-color: var(--matcha-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--matcha-glow);
+}
+
+/* Section Styling */
+section {
+    margin-top: 60px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--matcha-primary);
+    padding-left: 15px;
+}
+
+/* 4. Screenshots Placeholder */
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.screenshot-placeholder {
+    background-color: var(--card-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* 5. Spesifikasi */
+.specs-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.specs-group {
+    margin-bottom: 20px;
+}
+
+.specs-group:last-child {
+    margin-bottom: 0;
+}
+
+.specs-group h3 {
+    color: var(--matcha-primary);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.specs-group ul {
+    list-style-type: none;
+}
+
+.specs-group li {
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.specs-group li::before {
+    content: "•";
+    color: var(--matcha-primary);
+    position: absolute;
+    left: 0;
+}
+
+.app-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* 6. Installation Placeholder */
+.installation-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+}
+
+.installation-box p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.code-box {
+    background-color: var(--bg-color);
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    color: var(--matcha-primary);
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    text-align: left;
+}
+
+/* Styling khusus untuk tautan spesifikasi yang downloadable */
+.specs-group ul li a {
+    color: var(--matcha-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.specs-group ul li a:hover {
+    color: var(--matcha-hover);
+    text-decoration: underline;
+}
+
+.specs-group ul li a code {
+    background-color: var(--bg-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    color: inherit; /* Mengikuti warna matcha dari tag <a> saat di-hover */
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 80px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- 3-Column Responsive Flavors Grid --- */
+.flavors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Response untuk Layar HP / Tablet kecil (1 Kolom ke bawah) */
+@media (max-width: 900px) {
+    .flavors-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.flavor-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.flavor-card:hover {
+    border-color: var(--matcha-primary);
+}
+
+.flavor-wip {
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+.flavor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.flavor-header h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.badge-stable {
+    background-color: rgba(141, 162, 116, 0.2);
+    color: var(--matcha-primary);
+    border: 1px solid var(--matcha-primary);
+}
+
+.badge-wip {
+    background-color: rgba(148, 163, 184, 0.2);
+    color: var(--text-muted);
+    border: 1px solid var(--text-muted);
+}
+
+.flavor-body .specs-group h4 {
+    color: var(--matcha-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.flavor-body p, .flavor-body li {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.flavor-footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Secondary & Disabled Button Styling */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--matcha-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--matcha-primary);
+    color: #121417;
+}
+
+.btn-disabled {
+    background-color: var(--border-color);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-disabled:hover {
+    background-color: var(--border-color);
+    transform: none;
+    box-shadow: none;
+}

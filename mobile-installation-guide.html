@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="matcha-web.css">
+    
+    <title>ChelseaOS Mobile - Installation Guide</title>
+</head>
+<body>
+
+    <div class="top-spacer"></div>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <img src="resources/chelsea-matcha/chel.png" alt="ChelseaOS Logo" class="logo">
+            <h1>ChelseaOS Mobile</h1>
+            <p>Guide to Install ChelseaOS Mobile in Termux PRoot-Distro</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" class="btn-download btn-secondary" style="font-size: 0.95rem; padding: 8px 20px;">
+                    ← Kembali ke Beranda
+                </a>
+            </div>
+        </header>
+
+        <!-- Update Info / Release Notes Box -->
+        <section id="update-info">
+            <div class="specs-container" style="border-left: 4px solid var(--matcha-primary);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="color: var(--matcha-primary); margin: 0;">ChelseaOS Mobile 1.0</h3>
+                    <span class="badge badge-stable">Update Info</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px;">
+                    Rilis ini adalah <em>fork</em> dari <code>NadineOS 5.1</code> dengan beberapa pembaruan utama:
+                </p>
+                <ul style="list-style-type: none; padding-left: 10px; font-size: 0.9rem;">
+                    <li style="margin-bottom: 5px;">• <strong>Dual-mode display:</strong> Support <code>Termux-X11</code> dan <code>TigerVNC Server</code></li>
+                    <li style="margin-bottom: 5px;">• <strong>Removed GPU Acceleration:</strong> Sementara dinonaktifkan untuk stabilitas</li>
+                    <li style="margin-bottom: 5px;">• <strong>Chelsea Mobile Patcher:</strong> Tool otomatisasi penyuntingan launcher aplikasi Chromium/Electron</li>
+                </ul>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 12px; font-style: italic;">
+                    Diperbarui tanggal 27 Juli 2026
+                </p>
+            </div>
+        </section>
+
+        <!-- Langkah 0: Konfigurasi ADB -->
+        <section id="step-0">
+            <h2>0. Konfigurasi ADB (Phantom Process Fix)</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Siapkan ADB (platform-tools) pada komputer Anda (PC Desktop, Laptop, Raspberry Pi, Orange Pi, dsb. yang terhubung ke jaringan lokal yang sama dengan ponsel target). Aktifkan <strong>USB/Wireless Debugging</strong> di Opsi Developer, lalu eksekusi perintah berikut:
+                </p>
+                <div class="code-box">
+                    adb shell "/system/bin/device_config set_sync_disabled_for_tests persistent"
+                </div><br>
+                <div class="code-box">
+                    adb shell "/system/bin/device_config put activity_manager max_phantom_processes 2147483647"
+                </div><br>
+                <div class="code-box">
+                    adb shell settings put global settings_enable_monitor_phantom_procs false
+                </div>
+            </div>
+        </section>
+
+        <!-- Langkah 1: Persiapan APK -->
+        <section id="step-1">
+            <h2>1. Persiapan APK</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color); margin-bottom: 15px;">
+                    Unduh dan pasang APK pendukung yang diperlukan di ponsel Android Anda:
+                </p>
+                <div class="specs-group" style="text-align: left;">
+                    <ul>
+                        <li><a href="https://f-droid.org/en/packages/com.termux/" target="_blank">Termux (F-Droid)</a></li>
+                        <li><a href="https://github.com/termux/termux-x11/releases" target="_blank">Termux-X11 Releases</a></li>
+                        <li><a href="https://f-droid.org/id/packages/com.termux.api/" target="_blank">Termux:API (F-Droid)</a></li>
+                    </ul>
+                </div>
+                <p style="text-align: left; color: var(--text-muted); font-size: 0.9rem; margin-top: 15px;">
+                    <em>Catatan:</em> Anda dapat menginstalnya via ADB (<code>adb install &lt;file.apk&gt;</code>) atau metode <em>sideloading</em>. Pastikan untuk menonaktifkan optimasi baterai dan memberikan izin akses penyimpanan (<code>MANAGE_EXTERNAL_STORAGE</code>).
+                </p>
+            </div>
+        </section>
+
+        <!-- Langkah 2: Persiapan Termux Environment -->
+        <section id="step-2">
+            <h2>2. Persiapan Termux Environment</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Buka aplikasi <strong>Termux</strong> di HP Anda, lalu jalankan perintah pembaruan paket dan instalasi Debian PRoot:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+pkg update && pkg upgrade && pkg install x11-repo termux-x11-nightly pulseaudio wget proot-distro nano
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Selanjutnya, pasang distribusi Debian:
+                </p>
+                <div class="code-box">
+proot-distro install debian
+                </div>
+            </div>
+        </section>
+
+        <!-- Langkah 3: Persiapan Proot-Distro Environment -->
+        <section id="step-3">
+            <h2>3. Persiapan PRoot-Distro Environment</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Masuk ke dalam lingkungan container Debian:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+proot-distro login debian
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Pasang Desktop Environment XFCE4 & utilitas sudo:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+apt update && apt upgrade && apt install xfce4 xfce4-goodies sudo
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Buat pengguna baru bernama <code>chelsea</code> dan masukkan ke dalam grup sudo:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+adduser chelsea
+sudo adduser chelsea sudo
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Edit berkas sudoers dengan menjalankan <code>nano /etc/sudoers</code>, lalu tambahkan baris berikut di bagian bawah:
+                </p>
+                <div class="code-box">
+chelsea ALL=(ALL) NOPASSWD:ALL
+                </div>
+            </div>
+        </section>
+
+        <!-- Langkah 4: Persiapan Desktop Environment -->
+        <section id="step-4">
+            <h2>4. Persiapan Desktop Environment</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Kembali ke Termux dengan mengetik <code>exit</code>, lalu masuk kembali sebagai pengguna <code>chelsea</code>:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+proot-distro login debian --user chelsea
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Jalankan skrip transformer ChelseaOS Mobile untuk memasang tema dan konfigurasi otomatis:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+wget -qO- resources/mobile/chelsea-mobile-transformer.sh | bash
+                </div>
+                <p style="text-align: left; color: var(--text-muted); font-size: 0.85rem;">
+                    Unduh manual: <a href="resources/mobile/chelsea-mobile-transformer.sh" download><code>chelsea-mobile-transformer.sh</code></a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Langkah 5: Persiapan Launcher -->
+        <section id="step-5">
+            <h2>5. Persiapan Launcher</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Kembali ke lingkungan Termux utama (ketik <code>exit</code>), lalu unduh dan beri izin eksekusi pada skrip launcher:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+wget resources/mobile/start-chelsea.sh
+chmod +x start-chelsea.sh
+                </div>
+                <p style="text-align: left; color: var(--text-color);">
+                    Jalankan ChelseaOS Mobile menggunakan perintah berikut:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+./start-chelsea.sh
+                </div>
+                <p style="text-align: left; color: var(--text-muted); font-size: 0.85rem;">
+                    Unduh manual: <a href="resources/mobile/start-chelsea.sh" download><code>start-chelsea.sh</code></a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Tool Tambahan: Chelsea Mobile Patcher -->
+        <section id="patcher-tool">
+            <h2>Chelsea Mobile Patcher Tools</h2>
+            <div class="installation-box">
+                <p style="text-align: left; color: var(--text-color);">
+                    Untuk memperbaiki masalah <em>sandbox</em> pada aplikasi berbasis Chromium/Electron (seperti Chromium, VS Code, Obsidian) di lingkungan PRoot, gunakan skrip patcher berikut di dalam Debian:
+                </p>
+                <div class="code-box" style="margin-bottom: 15px;">
+wget resources/mobile/chelsea-mobile-patcher.sh
+chmod +x chelsea-mobile-patcher.sh
+./chelsea-mobile-patcher.sh
+                </div>
+                <p style="text-align: left; color: var(--text-muted); font-size: 0.85rem;">
+                    Unduh manual: <a href="resources/mobile/chelsea-mobile-patcher.sh" download><code>chelsea-mobile-patcher.sh</code></a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Catatan Akselerasi GPU -->
+        <section id="gpu-acceleration">
+            <h2>Konfigurasi GPU Acceleration</h2>
+            <div class="specs-container" style="border: 1px dashed var(--border-color);">
+                <p style="color: var(--text-muted); font-size: 0.95rem;">
+                    Saat ini <strong>ChelseaOS Mobile 1.0</strong> belum mendukung akselerasi GPU secara stabil. Jika Anda membutuhkan dukungan akselerasi GPU penuh, disarankan untuk menggunakan versi legacy <code>NadineOS 5.1</code>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>ChelseaOS Project by Chris26 & Michang<br>
+            Made with Love</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
