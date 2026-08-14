@@ -15,12 +15,12 @@ mkdir -p ~/.fonts/
 mkdir -p ~/.local/share/icons/  # Memastikan folder ikon lokal terbuat
 
 # Download Resources
-wget -P ~/Pictures/Icons/ https://content.christianah.my.id/chelsea-os/chel.png
-wget -P ~/Pictures/Wallpaper/ https://content.christianah.my.id/chelsea-os/defaultWallpaper.jpg
-wget -P ~/.fonts/ https://content.christianah.my.id/chelsea-os/NotoColorEmoji-Regular.ttf
-wget -P ~/Desktop/ https://content.christianah.my.id/chelsea-os/chel.jpeg
-wget -P ~/.local/share/icons/ https://content.christianah.my.id/chelsea-os/Papirus-chelsea_matcha-dark.zip
-wget -P ~/.themes/ https://content.christianah.my.id/chelsea-os/chelsea-matcha-dark.zip
+wget -P ~/Pictures/Icons/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/chel.png
+wget -P ~/Pictures/Wallpaper/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/defaultWallpaper.jpg
+wget -P ~/.fonts/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/NotoColorEmoji-Regular.ttf
+wget -P ~/Desktop/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/chel.jpeg
+wget -P ~/.local/share/icons/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/Papirus-chelsea_matcha-dark.zip
+wget -P ~/.themes/ https://chelseaos.christianah.my.id/resources/chelsea-matcha/chelsea-matcha-dark.zip
 
 # Unzip & delete zip (Ditambahkan parameter -d agar ekstrak ke tempat yang benar)
 unzip ~/.local/share/icons/Papirus-chelsea_matcha-dark.zip -d ~/.local/share/icons/
