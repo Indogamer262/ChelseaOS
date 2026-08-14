@@ -203,6 +203,10 @@ section h2 {
     border: 1px solid var(--border-color);
     overflow-x: auto;
     text-align: left;
+    /* izinkan pemenggalan kata */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 /* Styling khusus untuk tautan spesifikasi yang downloadable */
@@ -222,7 +226,8 @@ section h2 {
     padding: 2px 6px;
     border-radius: 4px;
     border: 1px solid var(--border-color);
-    color: inherit; /* Mengikuti warna matcha dari tag <a> saat di-hover */
+    color: inherit;
+    /* Mengikuti warna matcha dari tag <a> saat di-hover */
     cursor: pointer;
 }
 
@@ -310,7 +315,8 @@ footer {
     margin-bottom: 6px;
 }
 
-.flavor-body p, .flavor-body li {
+.flavor-body p,
+.flavor-body li {
     font-size: 0.9rem;
     color: var(--text-color);
 }
