@@ -11,9 +11,10 @@ echo "========================================"
 echo "Silakan pilih mode tampilan:"
 echo "1) Termux-X11 (Tampilan Lokal di HP)"
 echo "2) TigerVNC Server (Remote via IP Lokal)"
-echo "3) Keluar"
+echo "3) XRDP Server (Remote via IP Lokal + Audio)"
+echo "4) Keluar"
 echo "----------------------------------------"
-read -p "Masukkan pilihan [1-3]: " choice
+read -p "Masukkan pilihan [1-4]: " choice
 
 case $choice in
     1)
@@ -41,7 +42,7 @@ case $choice in
         proot-distro login debian --shared-tmp -- /bin/bash -c 'export PULSE_SERVER=127.0.0.1 && export XDG_RUNTIME_DIR=${TMPDIR} && su - chelsea -c "env DISPLAY=:0 startxfce4"'
         ;;
 
-	2)
+    2)
         echo ""
         echo "[+] Memulai Mode TigerVNC Server..."
         
@@ -71,6 +72,37 @@ case $choice in
         ;;
 
     3)
+        echo ""
+        echo "[+] Memulai Mode XRDP Server (di Termux + Audio Support)..."
+        
+        # Ambil IP Lokal HP di Termux
+        LOCAL_IP=$(ip route get 1.1.1.1 2>/dev/null | awk '{print $7}')
+        if [ -z "$LOCAL_IP" ]; then
+            LOCAL_IP=$(ip -4 addr show wlan0 2>/dev/null | awk '/inet / {print $2}' | cut -d/ -f1)
+        fi
+
+        # Enable PulseAudio and multicast-rtp over Network di Termux
+        pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --load="module-rtp-send source=OpenSL_ES_sink.monitor port=4656 loop=true" --exit-idle-time=-1
+
+        echo "----------------------------------------------------"
+        echo "XRDP Server berjalan di port 3389"
+        echo "Akses dari Client RDP (Windows Remote Desktop / Remmina):"
+        echo " -> ${LOCAL_IP:-IP-HP-Kamu}:3389"
+        echo "----------------------------------------------------"
+        echo "[!] JANGAN TUTUP TERMINAL INI SELAMA PAKAI XRDP!"
+        echo "[!] Tekan Ctrl+C di terminal ini untuk mematikan server."
+        echo "----------------------------------------------------"
+
+        # Jalankan xrdp-sesman dan xrdp langsung di Termux untuk membuka kontainer proot-distro, lalu pantau log
+        proot-distro login debian --shared-tmp -- /bin/bash -c '
+			export PULSE_SERVER=127.0.0.1
+			rm -f /var/run/xrdp/xrdp-sesman.pid /var/run/xrdp/xrdp.pid
+			xrdp-sesman
+			xrdp
+			tail -f /var/log/xrdp.log
+		'
+        ;;
+    4)
         echo "Batal menjalankan OS."
         exit 0
         ;;
